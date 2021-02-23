@@ -9,6 +9,8 @@ class Genre(models.Model):
     class Meta:
         ordering = ['name']
 
+
+
     def __str__(self):
         return self.name
 
@@ -41,6 +43,12 @@ class Book(models.Model):
     def __str__(self):
         return self.title
 
+    def display_genre(self):
+        return ','.join(genre.name for genre in self.genre.all()[:3])
+
+    display_genre.short_description = 'Genre'
+
+
     def get_absolute_url(self):
         return reverse("book-details", args=[str(self.id)])
 
@@ -71,9 +79,9 @@ class Author(models.Model):
         max_length=100, help_text="Enter your first name")
     last_name = models.CharField(
         max_length=100, null=True, blank=True, help_text="Enter your last name")
-    d_birth = models.DateField(
+    d_birth = models.DateField("Date of Birth",
         auto_now=False, auto_now_add=False, null=True, blank=True)
-    d_dead = models.DateField(
+    d_dead = models.DateField( "Dead",
         auto_now=False, auto_now_add=False, null=True, blank=True)
 
     class Meta:
