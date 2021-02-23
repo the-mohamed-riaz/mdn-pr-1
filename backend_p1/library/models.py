@@ -14,7 +14,7 @@ class Genre(models.Model):
 
 
 class Language(models.Model):
-    name = models.models.CharField(
+    name = models.CharField(
         max_length=50, help_text="Enter the book language")
 
     class Meta:
@@ -50,10 +50,10 @@ class BookInstance(models.Model):
                           help_text="Unique id for particular books")
     due_back = models.DateField(auto_now=False, auto_now_add=False)
     LOAN_STATUS = (
-        ('m', 'Maintainance')
-        ('a', 'Available')
-        ('o', 'On loan')
-        ('r', 'Reserved')
+        ('m', 'Maintainance'),
+        ('a', 'Available'),
+        ('o', 'On loan'),
+        ('r', 'Reserved'),
     )
     status = models.CharField(max_length=1, choices=LOAN_STATUS,
                               null=True, default='m', help_text="Book availability")
